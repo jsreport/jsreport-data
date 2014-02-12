@@ -1,7 +1,7 @@
-﻿define(["app", "marionette", "core/view.base", "core/utils", "./data.dialog.view", "./data.dialog.model"], function (app, Marionette, ViewBase, Utils, DialogView, Model) {
+﻿define(["app", "marionette", "core/view.base", "core/utils", "./data.template.playground.dialog", "./data.template.playground.model"], function (app, Marionette, ViewBase, Utils, DialogView, Model) {
     return ViewBase.extend({
         tagName: "li",
-        template: "data-template-extension",
+        template: "data-template-extension-playground",
         
         initialize: function () {
             _.bindAll(this, "isFilled");
@@ -12,8 +12,7 @@
         },
         
         isFilled: function () {
-            return this.templateModel.get("dataItemId") ||
-                ((this.templateModel.get("dataItem") != null) && (this.templateModel.get("dataItem").dataJson != null));
+            return (this.templateModel.get("dataItem") != null) && (this.templateModel.get("dataItem").dataJson != null);
         },
         
         setTemplateModel: function (model) {
