@@ -5,7 +5,7 @@
   "scripts": {
     "test": "mocha test --timeout 5000 && standard",
     "build": "npm run prepublish",
-    "prepublish": "jsreport-studio-build"
+    "prepublish": "in-publish && jsreport-studio-build"
   },
   "homepage": "https://github.com/jsreport/jsreport-data",
   "repository": {
@@ -29,6 +29,7 @@
   },
   "license": "LGPL",
   "dependencies": {
+    "in-publish": "2.0.0",
     "q": "1.4.1",
     "shortid": "2.2.6",
     "underscore": "1.8.3"
