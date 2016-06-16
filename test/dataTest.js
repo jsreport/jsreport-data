@@ -1,14 +1,15 @@
 var assert = require('assert')
-var path = require('path')
-var Reporter = require('jsreport-core').Reporter
+var data = require('../')
+var templates = require('jsreport-templates')
+var jsreport = require('jsreport-core')
 
 describe('data', function () {
   var reporter
 
   beforeEach(function (done) {
-    reporter = new Reporter({
-      rootDirectory: path.join(__dirname, '../')
-    })
+    reporter = jsreport()
+    reporter.use(templates())
+    reporter.use(data())
 
     reporter.init().then(function () {
       done()
@@ -24,6 +25,7 @@ describe('data', function () {
     return reporter.documentStore.collection('data').insert(dataItem).then(function (data) {
       var request = {
         reporter: reporter,
+        logger: reporter.logger,
         template: {content: 'html', data: {shortid: data.shortid}},
         options: {recipe: 'html'}
       }
@@ -44,6 +46,7 @@ describe('data', function () {
     return reporter.documentStore.collection('data').insert(dataItem).then(function (data) {
       var request = {
         reporter: reporter,
+        logger: reporter.logger,
         template: {content: 'html', data: {name: 'test'}},
         options: {recipe: 'html'}
       }
@@ -58,6 +61,7 @@ describe('data', function () {
   it('should callback error when missing data', function (done) {
     var request = {
       reporter: reporter,
+      logger: reporter.logger,
       template: {content: 'html', data: {shortid: 'MnI0b0QwNXBhZHlRSXBhRg=='}},
       options: {recipe: 'html'}
     }
@@ -71,6 +75,7 @@ describe('data', function () {
   it('should ignore extension when no data specified', function (done) {
     var request = {
       reporter: reporter,
+      logger: reporter.logger,
       template: {content: 'html', dataItemId: null},
       options: {recipe: 'html'}
     }
