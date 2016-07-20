@@ -10,7 +10,7 @@ Studio.addEntitySet({
 })
 
 Studio.addPropertiesComponent(Properties.title, Properties, (entity) => entity.__entitySet === 'templates')
-Studio.addEditorComponent('data', DataEditor)
+Studio.addEditorComponent('data', DataEditor, (reformatter, entity) => ({ dataJson: reformatter(entity.dataJson, 'js') }))
 
 Studio.previewListeners.push((request, entities) => {
   if (!request.template.data || !request.template.data.shortid) {
