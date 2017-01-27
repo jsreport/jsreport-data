@@ -6,17 +6,15 @@ var jsreport = require('jsreport-core')
 describe('data', function () {
   var reporter
 
-  beforeEach(function (done) {
+  beforeEach(function () {
     reporter = jsreport()
     reporter.use(templates())
     reporter.use(data())
 
-    reporter.init().then(function () {
-      done()
-    }).fail(done)
+    return reporter.init()
   })
 
-  it('should find and use data based on shortid', function (done) {
+  it('should find and use data based on shortid', function () {
     var dataItem = {
       name: 'test',
       dataJson: JSON.stringify({a: 'xx'}) + ''
@@ -32,12 +30,11 @@ describe('data', function () {
 
       return reporter.data.handleBeforeRender(request, {}).then(function () {
         assert.equal(request.data.a, JSON.parse(dataItem.dataJson).a)
-        done()
       })
-    }).catch(done)
+    })
   })
 
-  it('should find and use data based on name', function (done) {
+  it('should find and use data based on name', function () {
     var dataItem = {
       name: 'test',
       dataJson: JSON.stringify({a: 'xx'}) + ''
@@ -53,12 +50,11 @@ describe('data', function () {
 
       return reporter.data.handleBeforeRender(request, {}).then(function () {
         assert.equal(request.data.a, JSON.parse(dataItem.dataJson).a)
-        done()
       })
-    }).catch(done)
+    })
   })
 
-  it('should callback error when missing data', function (done) {
+  it('should callback error when missing data', function () {
     var request = {
       reporter: reporter,
       logger: reporter.logger,
@@ -66,13 +62,12 @@ describe('data', function () {
       options: {recipe: 'html'}
     }
 
-    return reporter.data.handleBeforeRender(request, {}).fail(function (err) {
+    return reporter.data.handleBeforeRender(request, {}).catch(function (err) {
       assert.notEqual(null, err)
-      done()
     })
   })
 
-  it('should ignore extension when no data specified', function (done) {
+  it('should ignore extension when no data specified', function () {
     var request = {
       reporter: reporter,
       logger: reporter.logger,
@@ -80,8 +75,6 @@ describe('data', function () {
       options: {recipe: 'html'}
     }
 
-    reporter.data.handleBeforeRender(request, {}).then(function () {
-      done()
-    }).catch(done)
+    return reporter.data.handleBeforeRender(request, {})
   })
 })
