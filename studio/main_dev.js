@@ -6,7 +6,8 @@ Studio.addEntitySet({
   name: 'data',
   faIcon: 'fa-database',
   visibleName: 'sample data',
-  helpUrl: 'http://jsreport.net/learn/inline-data'
+  helpUrl: 'http://jsreport.net/learn/inline-data',
+  entityTreePosition: 900
 })
 
 Studio.addPropertiesComponent(Properties.title, Properties, (entity) => entity.__entitySet === 'templates')
