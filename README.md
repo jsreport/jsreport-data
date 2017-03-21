@@ -4,12 +4,12 @@
 
 jsreport extension adding support for using sample data for previewing templates
 
-See http://jsreport.net/learn/inline-data
+See https://jsreport.net/learn/inline-data
 
-##Installation
+## Installation
 > npm install jsreport-data
 
-##jsreport-core
+## jsreport-core
 You can apply this extension also manually to [jsreport-core](https://github.com/jsreport/jsreport-core)
 
 ```js
