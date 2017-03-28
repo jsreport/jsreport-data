@@ -28,9 +28,10 @@
     "parser": "babel-eslint"
   },
   "license": "LGPL",
-  "dependencies": {    
-    "in-publish": "2.0.0",    
-    "shortid": "2.2.6"    
+  "dependencies": {
+    "bluebird": "3.5.0",
+    "in-publish": "2.0.0",
+    "shortid": "2.2.6"
   },
   "author": "Jan Blaha",
   "devDependencies": {
