@@ -30,7 +30,7 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "shortid": "2.2.8"
+    "nanoid": "1.0.2"
   },
   "author": "Jan Blaha",
   "devDependencies": {
