@@ -30,7 +30,6 @@
   },
   "license": "LGPL",
   "dependencies": {
-    "bluebird": "3.5.1",
     "shortid": "2.2.8"
   },
   "author": "Jan Blaha",
