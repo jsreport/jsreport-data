@@ -31,7 +31,6 @@
   "license": "LGPL",
   "dependencies": {
     "bluebird": "3.5.1",
-    "in-publish": "2.0.0",
     "shortid": "2.2.8"
   },
   "author": "Jan Blaha",
@@ -40,6 +39,7 @@
     "eslint": "4.16.0",
     "eslint-config-standard-jsx": "4.0.2",
     "eslint-plugin-babel": "4.1.2",
+    "in-publish": "2.0.0",
     "jsreport-core": "jsreport/jsreport-core#2.0.0-beta",
     "jsreport-handlebars": "1.1.2",
     "jsreport-studio-dev": "1.1.2",
