@@ -19,6 +19,28 @@ export default class Properties extends Component {
     return 'sample data: ' + foundItems[0].name
   }
 
+  componentDidMount () {
+    this.removeInvalidDataReferences()
+  }
+
+  componentDidUpdate () {
+    this.removeInvalidDataReferences()
+  }
+
+  removeInvalidDataReferences () {
+    const { entity, entities, onChange } = this.props
+
+    if (!entity.data) {
+      return
+    }
+
+    const updatedDataItems = Object.keys(entities).filter((k) => entities[k].__entitySet === 'data' && entities[k].shortid === entity.data.shortid)
+
+    if (updatedDataItems.length === 0) {
+      onChange({ _id: entity._id, data: null })
+    }
+  }
+
   render () {
     const { entity, entities, onChange } = this.props
     const dataItems = Properties.selectDataItems(entities)
