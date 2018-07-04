@@ -16,6 +16,16 @@ describe('data', () => {
     return reporter.init()
   })
 
+  it('should accept null as data', async () => {
+    const request = {
+      template: {content: 'content', data: null, engine: 'handlebars', recipe: 'html'},
+      options: {recipe: 'html'}
+    }
+
+    const res = await reporter.render(request)
+    res.content.toString().should.be.eql('content')
+  })
+
   it('should find and use data based on shortid', async () => {
     const dataItem = {
       name: 'test',
