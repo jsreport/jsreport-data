@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
+import Studio from 'jsreport-studio'
+
+const EntityRefSelect = Studio.EntityRefSelect
+
+function selectDataItems (entities) {
+  return Object.keys(entities).filter((k) => entities[k].__entitySet === 'data').map((k) => entities[k])
+}
 
 export default class Properties extends Component {
-  static selectDataItems (entities) {
-    return Object.keys(entities).filter((k) => entities[k].__entitySet === 'data').map((k) => entities[k])
-  }
-
   static title (entity, entities) {
     if (!entity.data || !entity.data.shortid) {
       return 'data'
     }
 
-    const foundItems = Properties.selectDataItems(entities).filter((e) => entity.data.shortid === e.shortid)
+    const foundItems = selectDataItems(entities).filter((e) => entity.data.shortid === e.shortid)
 
     if (!foundItems.length) {
       return 'data'
@@ -42,18 +45,17 @@ export default class Properties extends Component {
   }
 
   render () {
-    const { entity, entities, onChange } = this.props
-    const dataItems = Properties.selectDataItems(entities)
+    const { entity, onChange } = this.props
 
     return (
       <div className='properties-section'>
         <div className='form-group'>
-          <select
-            value={entity.data ? entity.data.shortid : ''}
-            onChange={(v) => onChange({_id: entity._id, data: v.target.value !== 'empty' ? { shortid: v.target.value } : null})}>
-            <option key='empty' value='empty'>- not selected -</option>
-            {dataItems.map((e) => <option key={e.shortid} value={e.shortid}>{e.name}</option>)}
-          </select>
+          <EntityRefSelect
+            headingLabel='Select data'
+            filter={(references) => ({ data: references.data })}
+            value={entity.data ? entity.data.shortid : null}
+            onChange={(selected) => onChange({ _id: entity._id, data: selected.length > 0 ? { shortid: selected[0].shortid } : null })}
+          />
         </div>
       </div>
     )
