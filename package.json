@@ -29,9 +29,7 @@
     "parser": "babel-eslint"
   },
   "license": "LGPL",
-  "dependencies": {
-    "nanoid": "1.0.2"
-  },
+  "dependencies": {},
   "author": "Jan Blaha",
   "devDependencies": {
     "babel-eslint": "8.2.3",
@@ -39,7 +37,7 @@
     "eslint-config-standard-jsx": "5.0.0",
     "eslint-plugin-babel": "5.0.0",
     "in-publish": "2.0.0",
-    "jsreport-core": "2.3.3",
+    "jsreport-core": "github:jsreport/jsreport-core",
     "jsreport-handlebars": "2.0.0",
     "jsreport-studio-dev": "1.3.2",
     "jsreport-templates": "2.1.0",
