@@ -18,8 +18,8 @@ describe('data', () => {
 
   it('should accept null as data', async () => {
     const request = {
-      template: {content: 'content', data: null, engine: 'handlebars', recipe: 'html'},
-      options: {recipe: 'html'}
+      template: { content: 'content', data: null, engine: 'handlebars', recipe: 'html' },
+      options: { recipe: 'html' }
     }
 
     const res = await reporter.render(request)
@@ -29,13 +29,13 @@ describe('data', () => {
   it('should find and use data based on shortid', async () => {
     const dataItem = {
       name: 'test',
-      dataJson: JSON.stringify({a: 'xx'})
+      dataJson: JSON.stringify({ a: 'xx' })
     }
 
     const data = await reporter.documentStore.collection('data').insert(dataItem)
     const request = {
-      template: {content: '{{a}}', data: {shortid: data.shortid}, engine: 'handlebars', recipe: 'html'},
-      options: {recipe: 'html'}
+      template: { content: '{{a}}', data: { shortid: data.shortid }, engine: 'handlebars', recipe: 'html' },
+      options: { recipe: 'html' }
     }
 
     const res = await reporter.render(request)
@@ -45,13 +45,13 @@ describe('data', () => {
   it('should find and use data based on name', async () => {
     const dataItem = {
       name: 'test',
-      dataJson: JSON.stringify({a: 'xx'})
+      dataJson: JSON.stringify({ a: 'xx' })
     }
 
     await reporter.documentStore.collection('data').insert(dataItem)
     const request = {
-      template: {content: '{{a}}', data: {name: 'test'}, engine: 'handlebars', recipe: 'html'},
-      options: {recipe: 'html'}
+      template: { content: '{{a}}', data: { name: 'test' }, engine: 'handlebars', recipe: 'html' },
+      options: { recipe: 'html' }
     }
 
     const res = await reporter.render(request)
@@ -60,8 +60,8 @@ describe('data', () => {
 
   it('should callback error when missing data', async () => {
     const request = {
-      template: {content: 'html', data: {shortid: 'MnI0b0QwNXBhZHlRSXBhRg=='}},
-      options: {recipe: 'html'}
+      template: { content: 'html', data: { shortid: 'MnI0b0QwNXBhZHlRSXBhRg==' } },
+      options: { recipe: 'html' }
     }
 
     try {
@@ -74,8 +74,8 @@ describe('data', () => {
 
   it('should ignore extension when no data specified', () => {
     const request = {
-      template: {content: 'html', dataItemId: null},
-      options: {recipe: 'html'}
+      template: { content: 'html', dataItemId: null },
+      options: { recipe: 'html' }
     }
 
     return reporter.data.handleBeforeRender(request, {})

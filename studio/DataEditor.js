@@ -10,7 +10,7 @@ export default class DataEditor extends Component {
         name={entity._id}
         mode='json'
         value={entity.dataJson || ''}
-        onUpdate={(v) => onUpdate(Object.assign({}, entity, {dataJson: v}))}
+        onUpdate={(v) => onUpdate(Object.assign({}, entity, { dataJson: v }))}
       />
     )
   }
