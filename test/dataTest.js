@@ -17,6 +17,12 @@ describe('data', () => {
     return reporter.init()
   })
 
+  afterEach(() => {
+    if (reporter) {
+      return reporter.close()
+    }
+  })
+
   it('should accept null as data', async () => {
     const request = {
       template: { content: 'content', data: null, engine: 'handlebars', recipe: 'html' },
